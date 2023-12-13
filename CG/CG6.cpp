@@ -25,12 +25,10 @@ public:
         glBegin(GL_TRIANGLES);
         glColor3f(0.0, 1.5, 0.0);  
 
-        // First Mountain
-        glVertex3f(-1.0, -0.7, -1.0);
-        glVertex3f(-0.6, 0.2, -1.0);
-        glVertex3f(-0.2, -0.7, -1.0);
+        glVertex3f(0.1, -0.5, -1.0);
+        glVertex3f(0.5, 0.3, -1.0);
+        glVertex3f(0.9, -0.5, -1.0);
 
-        // Second Mountain
         glVertex3f(0.1, -0.5, -1.0);
         glVertex3f(0.5, 0.3, -1.0);
         glVertex3f(0.9, -0.5, -1.0);
@@ -39,7 +37,7 @@ public:
     }
 };
 
-Landscape landscape;  // Instantiate the Landscape class
+Landscape landscape;
 
 static int flag = 1;
 
@@ -47,9 +45,9 @@ void sunrise() {
     sunX += 0.001f;
     sunY += 0.0007f;
 
-    // Transition from dark to light during sunrise
+
     bgColorR += 0.001;
-    bgColorG += 0.0005; // Adjust as needed
+    bgColorG += 0.0005;
     bgColorB += 0.0;
 
     if (sunX > 0.01) {
@@ -61,9 +59,8 @@ void sunset() {
     sunX += 0.001f;
     sunY -= 0.0007f;
 
-    // Transition from light to dark during sunset
     bgColorR -= 0.001;
-    bgColorG -= 0.0005; // Adjust as needed
+    bgColorG -= 0.0005;
     bgColorB -= 0.0;
 
     if (sunX < -0.3) {
@@ -97,7 +94,6 @@ void drawScene() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    // Lighting setup
     GLfloat ambientColor[] = {0.2f, 0.2f, 0.2f, 1.0f};
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
 
@@ -123,7 +119,7 @@ void drawScene() {
 }
 
 void keyPress(unsigned char key, int x, int y) {
-    if (key == 27)  // ASCII code for 'esc' key
+    if (key == 27)
         exit(0);
 }
 
