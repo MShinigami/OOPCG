@@ -26,18 +26,18 @@ private:
         glClear(GL_COLOR_BUFFER_BIT);
 
         // Draw the pattern
-        int xc1 = 200, yc1 = 200, r1 = 50; // Smaller circle inside triangle
-        int xc2 = 200, yc2 = 200, r2 = 100; // Larger circle outside triangle
+        int xc1 = 200, yc1 = 200, r1 = 50; 
+        int xc2 = 200, yc2 = 200, r2 = 100; 
 
-        drawBresenhamCircle(xc2, yc2, r2); // Larger circle outside triangle
-        drawTriangle(xc2, yc2, r2); // Triangle touching the larger circle
-        drawBresenhamCircle(xc1, yc1, r1); // Smaller circle inside triangle
+        drawBresenhamCircle(xc2, yc2, r2);
+        drawTriangle(xc2, yc2, r2);
+        drawBresenhamCircle(xc1, yc1, r1);
 
         glFlush();
     }
 
     static void drawDDALine(int x1, int y1, int x2, int y2) {
-        glColor3f(0.0, 0.0, 1.0); // Blue color for lines
+        glColor3f(0.0, 0.0, 1.0);
 
         float dx = x2 - x1;
         float dy = y2 - y1;
@@ -59,7 +59,7 @@ private:
     }
 
     static void drawBresenhamCircle(int xc, int yc, int r) {
-        glColor3f(1.0, 0.0, 0.0); // Red color for circles
+        glColor3f(1.0, 0.0, 0.0);
 
         int x = 0;
         int y = r;
@@ -95,10 +95,10 @@ private:
     }
 
     static void drawTriangle(int xc, int yc, int r) {
-        glColor3f(0.0, 0.0, 1.0); // Blue color for lines
+        glColor3f(0.0, 0.0, 1.0);
 
-        // Calculate vertices of an equilateral triangle
-        float angle = 60.0 * M_PI / 180.0; // 60 degrees in radians
+    
+        float angle = 60.0 * M_PI / 180.0;
         int x1 = xc;
         int y1 = yc + r;
         int x2 = xc - r * sin(angle);
