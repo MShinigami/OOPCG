@@ -5,46 +5,53 @@
 
 using namespace std;
 
-int main() {
-    map<string, long long> statep;
+int main() 
+{
+    map<string, long long> sp;
 
     cout << "\nEnter state populations. Type '~' to finish.\n";
 
-    while (true) {
-        string state;
-        long long population;
+    while (true) 
+    {
+        string s;
+        long long p;
 
         cout << "\nEnter state name: ";
-        getline(cin, state);
+        getline(cin, s);
 
-        if (state == "~") {
+        if (s == "~") 
+        {
             break;
         }
 
         cout << "Enter population: ";
-        cin >> population;
+        cin >> p;
         cin.ignore();
 
-        statep[state] = population;
+        sp[s] = p;
     }
 
-    map<string, long long> sortedStatePopulations(statep.begin(), statep.end());
+    map<string, long long> sortedSp(sp.begin(), sp.end());
 
     cout << "\nSorted State Populations:\n";
-    for (const auto &pair : sortedStatePopulations) {
-        cout << pair.first << ": " << pair.second << endl;
+    for (const auto &p : sortedSp) 
+    {
+        cout << p.first << ": " << p.second << endl;
     }
 
     cout << "\nEnter the name of a state: ";
-    string state;
-    getline(cin, state);
+    string st;
+    getline(cin, st);
 
-    auto it = statep.find(state);
+    auto it = sp.find(st);
 
-    if (it != statep.end()) {
-        cout << "Population of " << state << ": " << it->second << endl;
-    } else {
-        cout << "Population data not available for " << state << endl;
+    if (it != sp.end()) 
+    {
+        cout << "Population of " << st << ": " << it->second << endl;
+    } 
+    else 
+    {
+        cout << "Population data not available for " << st << endl;
     }
 
     return 0;

@@ -6,7 +6,8 @@ using namespace std;
 
 class Private;
 
-class Personal {
+class Personal 
+{
 private:
     string name;
     string surname;
@@ -24,7 +25,8 @@ public:
     void displayRecord() const;
 };
 
-class Private {
+class Private 
+{
 private:
     string DOB;
     string blood;
@@ -37,7 +39,8 @@ public:
 
     friend class Personal;
 
-    void inputPrivateInfo() {
+    void inputPrivateInfo() 
+    {
         cout << "Enter Date of Birth: ";
         cin >> DOB;
         cout << "Enter Blood Group: ";
@@ -50,7 +53,8 @@ public:
         cin >> drivingLicenseNo;
     }
 
-    void displayPrivateInfo() const {
+    void displayPrivateInfo() const 
+    {
         cout << "Date of Birth: " << DOB << endl;
         cout << "Blood Group: " << blood << endl;
         cout << "Phone Number: " << phone << endl;
@@ -59,7 +63,8 @@ public:
     }
 };
 
-void Personal::input() {
+void Personal::input() 
+{
     cout << "Enter the name of the student: ";
     cin >> name;
     cout << "Enter the surname of the student: ";
@@ -75,18 +80,21 @@ void Personal::input() {
     privateData->inputPrivateInfo();
 }
 
-void Personal::displayRecord() const {
+void Personal::displayRecord() const 
+{
     cout << "Name: " << name << " " << surname << endl;
     cout << "Roll Number: " << roll_no << endl;
     cout << "Class: " << branch << endl;
     cout << "Division: " << div << endl;
 
-    if (privateData) {
+    if (privateData) 
+    {
         privateData->displayPrivateInfo();
     }
 }
 
-int main() {
+int main() 
+{
     vector<Personal> students;
     int recordsCreated = 0;
 
@@ -99,7 +107,8 @@ int main() {
         cout << "\nEnter your choice: ";
         cin >> choice;
 
-        switch (choice) {
+        switch (choice) 
+        {
             case '1':
                 {
                     Personal student;
@@ -109,21 +118,25 @@ int main() {
                     cout << "\nStudent data entered successfully.\nTotal records: " << recordsCreated << "\n";
                 }
                 break;
+
             case '2':
-                for (int i = 0; i < students.size(); ++i) {
+                for (int i = 0; i < students.size(); ++i) 
+                {
                     cout << "\nStudent " << i + 1 << "\n";
                     students[i].displayRecord();
                     cout << endl;
                 }
                 break;
+
             case '3':
                 cout << "\nExiting the program.\n";
                 break;
+
             default:
                 cout << "\nInvalid choice.\n";
         }
 
-    } while (choice != '3');
-
+    } 
+    while (choice != '3');
     return 0;
 }
