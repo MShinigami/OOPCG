@@ -12,13 +12,12 @@ struct ItemRecord {
     double cost;
 };
 
-void displayItemRecords(const vector<ItemRecord>& item_records) {
+void displayrecord(const vector<ItemRecord>& item_records) {
     cout << setw(15) << "Item Code" << setw(20) << "Item Name" << setw(10) << "Quantity" << setw(10) << "Cost" << "\n";
     cout << setfill('-') << setw(65) << "\n" << setfill(' ');
 
     for (const auto& record : item_records) {
-        cout << setw(15) << record.itemCode << setw(20) << record.itemName
-             << setw(10) << record.quantity << setw(10) << "Rs." << record.cost << "\n";
+        cout << setw(15) << record.itemCode << setw(20) << record.itemName << setw(10) << record.quantity << setw(10) << "Rs." << record.cost << "\n";
     }
     cout << endl;
 }
@@ -29,7 +28,7 @@ int main() {
     int choice;
 
     do {
-        cout<<"\n\n";
+        cout << "\n\n";
 
         cout << "Menu:\n";
         cout << "1. Add Item Record\n";
@@ -40,11 +39,10 @@ int main() {
 
         cout << "Enter your choice: ";
         cin >> choice;
-        
-        cout<<"\n\n";
+
+        cout << "\n\n";
 
         switch (choice) {
-
             case 1: {
                 ItemRecord new_item;
                 cout << "Enter Item Name: ";
@@ -60,9 +58,8 @@ int main() {
                 item_records.push_back(new_item);
                 break;
             }
-
             case 2:
-                displayItemRecords(item_records);
+                displayrecord(item_records);
                 break;
             case 3:
                 sort(item_records.begin(), item_records.end(),
@@ -78,9 +75,7 @@ int main() {
                 getline(cin, search_name);
 
                 auto it = find_if(item_records.begin(), item_records.end(),
-                                  [search_name](const ItemRecord& record) {
-                                      return record.itemName == search_name;
-                                  });
+                                  [search_name](const ItemRecord& record) { return record.itemName == search_name; });
 
                 if (it != item_records.end()) {
                     cout << "Record found:\n";
@@ -91,10 +86,10 @@ int main() {
                 break;
             }
             case 5:
-                cout << "THANK YOU \n";
+                cout << "\n THANK YOU \n";
                 break;
             default:
-                cout << "Invalid choice. Please enter a valid option.\n";
+                cout << "Invalid choice.\n";
         }
 
     } while (choice != 5);

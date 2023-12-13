@@ -34,7 +34,7 @@ int main() {
         cout << "3. Sort Integer Array" << endl;
         cout << "4. Sort Floating Point Array" << endl;
         cout << "5. Quit" << endl;
-        cout << "Enter your choice (1-5): ";
+        cout << "Enter your choice: ";
         cin >> choice;
 
         switch (choice) {

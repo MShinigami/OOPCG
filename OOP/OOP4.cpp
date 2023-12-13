@@ -10,11 +10,10 @@ private:
     string name;
 
 public:
-    // Constructors
+
     Student() : rollNumber(0), name("") {}
     Student(int roll, const string& n) : rollNumber(roll), name(n) {}
 
-    // Member functions
     void accept() {
         cout << "Enter Name: ";
         cin.ignore();
@@ -28,7 +27,6 @@ public:
         cout << "Name: " << name << "\n";
     }
 
-    // Friend functions for stream operators
     friend ostream& operator<<(ostream& os, const Student& student);
     friend istream& operator>>(istream& is, Student& student);
 };
