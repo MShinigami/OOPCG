@@ -1,46 +1,68 @@
-#include<iostream>
-#include<stdlib.h>
-#include<graphics.h>
-#include<math.h>
-using namespace std;
-void move(int j,int h,int &x,int &y)
-{
-    if(j==1)
-    y-=h;
-    else if(j==2)
-    x+=h;
-    else if(j==3)
-    y+=h;
-    else if(j==4)
-    x-=h;
-    lineto(x,y);
-}
-void hilbert(int r,int d,int l,int u, int i,int h, int &x,int &y)
-{
-    if(i>0)
-    {
-        i--;
-        hilbert(d,r,u,l,i,h,x,y);
-        move(r,h,x,y);
-        hilbert(r,d,l,u,i,h,x,y);
-        move(d,h,x,y);
-        hilbert(r,d,l,u,i,h,x,y);
-        move(l,h,x,y);
-        hilbert(u,l,d,r,i,h,x,y);
+#include <GL/glut.h>
+#include <cmath>
+
+int depth = 3; // Adjust this to change the level of recursion
+
+void drawKochSnowflake(int depth, double x1, double y1, double x5, double y5) {
+    if (depth == 0) {
+        // Draw a line segment from (x1, y1) to (x5, y5) with blue color
+        glColor3f(0.0f, 0.0f, 1.0f);  // Blue color
+        glBegin(GL_LINES);
+        glVertex2d(x1, y1);
+        glVertex2d(x5, y5);
+        glEnd();
+    }
+    else {
+        double deltaX = x5 - x1;
+        double deltaY = y5 - y1;
+
+        // Calculate new points
+        double x2 = x1 + deltaX / 3;
+        double y2 = y1 + deltaY / 3;
+        double x3 = 0.5 * (x1 + x5) + (sqrt(3) / 6) * (y1 - y5);
+        double y3 = 0.5 * (y1 + y5) + (sqrt(3) / 6) * (x5 - x1);
+        double x4 = x1 + 2 * deltaX / 3;
+        double y4 = y1 + 2 * deltaY / 3;
+
+        // Recursively draw smaller segments
+        drawKochSnowflake(depth - 1, x1, y1, x2, y2);
+        drawKochSnowflake(depth - 1, x2, y2, x3, y3);
+        drawKochSnowflake(depth - 1, x3, y3, x4, y4);
+        drawKochSnowflake(depth - 1, x4, y4, x5, y5);
     }
 }
-int main()
-{
-    int n,xl,yl;
-    int x0=50,y0=150,x,y,h=10,r=2,d=3,l=4,u=1;
-    cout<<"\nGive the value of n :";
-    cin>>n;
-    x=x0;y=y0;
-    int gm,gd=DETECT;
-    initgraph(&gd,&gm,NULL);
-    moveto(x,y);
-    hilbert(r,d,l,u,n,h,x,y);
-    delay(10000);
-    closegraph();
+
+void display() {
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    double x1 = -0.3;
+    double y1 = 0.3 * sqrt(3);
+    double x2 = 0.3;
+    double y2 = 0.3 * sqrt(3);
+    double x3 = 0.0;
+    double y3 = 0.0;
+
+    // Set the initial inner color
+    glColor3f(0.0f, 0.0f, 1.0f);  // Blue color
+
+    // Draw the Koch snowflake
+    drawKochSnowflake(depth, x1, y1, x2, y2);
+    drawKochSnowflake(depth, x2, y2, x3, y3);
+    drawKochSnowflake(depth, x3, y3, x1, y1);
+
+    glFlush();
+}
+
+int main(int argc, char** argv) {
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitWindowSize(800, 800);
+    glutCreateWindow("Koch Snowflake Fractal");
+
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+
+    glutDisplayFunc(display);
+    glutMainLoop();
+
     return 0;
 }
