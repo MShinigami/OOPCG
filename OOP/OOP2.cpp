@@ -4,45 +4,45 @@
 
 using namespace std;
 
-class Private;
+class Privacy;
 
 class Personal 
 {
 private:
     string name;
     string surname;
-    int roll_no;
+    int roll;
     string branch;
-    string div;
-    Private* privateData;
+    string division;
+    Privacy* privData;
 
 public:
-    Personal() : name(""), surname(""), roll_no(0), branch(""), div(""), privateData(nullptr) {}
+    Personal() : name(""), surname(""), roll(0), branch(""), division(""), privData(nullptr) {}
 
-    friend class Private;
+    friend class Privacy;
 
     void input();
-    void displayRecord() const;
+    void display() const;
 };
 
-class Private 
+class Privacy 
 {
 private:
-    string DOB;
+    string dob;
     string blood;
     string phone;
     string address;
-    string drivingLicenseNo;
+    string dlNo;
 
 public:
-    Private() : DOB(""), blood(""), phone(""), address(""), drivingLicenseNo("") {}
+    Privacy() : dob(""), blood(""), phone(""), address(""), dlNo("") {}
 
     friend class Personal;
 
-    void inputPrivateInfo() 
+    void input() 
     {
         cout << "Enter Date of Birth: ";
-        cin >> DOB;
+        cin >> dob;
         cout << "Enter Blood Group: ";
         cin >> blood;
         cout << "Enter Phone Number: ";
@@ -50,16 +50,16 @@ public:
         cout << "Enter Address: ";
         cin >> address;
         cout << "Enter Driving License Number: ";
-        cin >> drivingLicenseNo;
+        cin >> dlNo;
     }
 
-    void displayPrivateInfo() const 
+    void display() const 
     {
-        cout << "Date of Birth: " << DOB << endl;
+        cout << "Date of Birth: " << dob << endl;
         cout << "Blood Group: " << blood << endl;
         cout << "Phone Number: " << phone << endl;
         cout << "Address: " << address << endl;
-        cout << "Driving License Number: " << drivingLicenseNo << endl;
+        cout << "Driving License Number: " << dlNo << endl;
     }
 };
 
@@ -70,26 +70,26 @@ void Personal::input()
     cout << "Enter the surname of the student: ";
     cin >> surname;
     cout << "Enter the roll number of the student: ";
-    cin >> roll_no;
+    cin >> roll;
     cout << "Enter the class of the student: ";
     cin >> branch;
     cout << "Enter the division of the student: ";
-    cin >> div;
+    cin >> division;
 
-    privateData = new Private();
-    privateData->inputPrivateInfo();
+    privData = new Privacy();
+    privData->input();
 }
 
-void Personal::displayRecord() const 
+void Personal::display() const 
 {
     cout << "Name: " << name << " " << surname << endl;
-    cout << "Roll Number: " << roll_no << endl;
+    cout << "Roll Number: " << roll << endl;
     cout << "Class: " << branch << endl;
-    cout << "Division: " << div << endl;
+    cout << "Division: " << division << endl;
 
-    if (privateData) 
+    if (privData) 
     {
-        privateData->displayPrivateInfo();
+        privData->display();
     }
 }
 
@@ -123,13 +123,12 @@ int main()
                 for (int i = 0; i < students.size(); ++i) 
                 {
                     cout << "\nStudent " << i + 1 << "\n";
-                    students[i].displayRecord();
+                    students[i].display();
                     cout << endl;
                 }
                 break;
 
             case '3':
-                cout << "\nExiting the program.\n";
                 break;
 
             default:
